@@ -89,7 +89,6 @@ commands:
       sphinx-build -b html docs/source docs/build
 
 channels:
-    - default
     - https://conda.anaconda.org/conda-forge/
     - https://conda.anaconda.org/joshburt/
 

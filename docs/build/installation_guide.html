@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Installation Guide &mdash; MLFlow Tracking Server For Anaconda Enterprise 0.6.0 documentation</title>
+  <title>Installation Guide &mdash; MLFlow Tracking Server For Anaconda Enterprise 0.6.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -16,7 +15,6 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -79,17 +77,17 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="installation-guide">
+  <div class="section" id="installation-guide">
 <h1>Installation Guide<a class="headerlink" href="#installation-guide" title="Permalink to this heading"></a></h1>
-<section id="overview">
+<div class="section" id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
 <p>Provides a hosted MLFlow Tracking Server meant for deployment into an Anaconda Enterprise environment.</p>
-</section>
-<section id="configuration">
+</div>
+<div class="section" id="configuration">
 <h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this heading"></a></h2>
 <p>The below variables control the configuration of the tracking server and related components.  See (Deployment) for information on when each is needed and created.</p>
 <p>These should be defined as AE5 secrets within the service account running the tracking server.  Alternatively they can also be set within the <code class="docutils literal notranslate"><span class="pre">anaconda-project.yml</span></code> project files.</p>
-<section id="variables">
+<div class="section" id="variables">
 <h3>Variables<a class="headerlink" href="#variables" title="Permalink to this heading"></a></h3>
 <ol class="arabic">
 <li><p><code class="docutils literal notranslate"><span class="pre">MLFLOW_BACKEND_STORE_URI</span></code></p>
@@ -157,9 +155,9 @@
 <p>30d0h0m0s</p>
 </li>
 </ol>
-</section>
-</section>
-<section id="deployment">
+</div>
+</div>
+<div class="section" id="deployment">
 <h2>Deployment<a class="headerlink" href="#deployment" title="Permalink to this heading"></a></h2>
 <ol class="arabic">
 <li><p><strong>Create Dedicated Service Account</strong></p>
@@ -307,14 +305,14 @@
 </div></blockquote>
 </li>
 </ol>
-</section>
-<section id="automated-deployments">
+</div>
+<div class="section" id="automated-deployments">
 <h2>Automated Deployments<a class="headerlink" href="#automated-deployments" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>See <a class="reference external" href="https://github.com/Anaconda-Platform/anaconda-enterprise-mlops-orchestration/blob/main/notebooks/deployment/tracking_server.ipynb">automation notebook</a> for an example.</p></li>
 </ul>
-</section>
-<section id="anaconda-project-runtime-commands">
+</div>
+<div class="section" id="anaconda-project-runtime-commands">
 <h2>Anaconda Project Runtime Commands<a class="headerlink" href="#anaconda-project-runtime-commands" title="Permalink to this heading"></a></h2>
 <p>These commands are used to start the server and perform the various administrative tasks.</p>
 <table class="colwidths-auto docutils align-default">
@@ -339,8 +337,8 @@
 </tr>
 </tbody>
 </table>
-</section>
-</section>
+</div>
+</div>
 
 
            </div>
