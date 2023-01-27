@@ -1,0 +1,5 @@
+name: github.action
+channels:
+  - default
+dependencies:
+  - anaconda-project
