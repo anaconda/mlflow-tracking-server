@@ -1,0 +1,164 @@
+name: mlflow-tracking-server
+description: MLFlow Tracking Server
+
+variables:
+  #
+  # All defined values here can be over-written from AE5 secrets of the same name.
+  #
+
+  # Server configuration information can be found here:
+  # https://www.mlflow.org/docs/latest/cli.html#mlflow-server
+
+  # These values can contain sensitive information should be defined as AE5 secrets when running as a hosted deployment.
+  MLFLOW_BACKEND_STORE_URI: sqlite:///data/mlflow/standalone/store/mydb.sqlite
+  MLFLOW_ARTIFACTS_DESTINATION: data/mlflow/standalone/artifacts
+
+  # Since the tracking server will also be a proxy artifact server, this configuration
+  # is required as it's used by some clients.  Unless proxied artifact access is getting
+  # disabled, this should not be changed.
+  MLFLOW_DEFAULT_ARTIFACT_ROOT: mlflow-artifacts:/
+
+  # Default age of deleted items to permanently remove during garbage collection.
+  MLFLOW_TRACKING_GC_TTL: 30d0h0m0s
+
+commands:
+  #
+  # Run Time Commands
+  #
+
+  # Command launches the MLFlow Tracking Server
+  TrackingServer:
+    env_spec: default
+    unix: python -m src.mlflow.tracking.server.handler --activity server
+    supports_http_options: true
+
+  # Command launches the MLFlow Garbage Collector
+  GarbageCollection:
+    env_spec: default
+    unix: python -m src.mlflow.tracking.server.handler --activity gc
+
+  # Command launches the database upgrade
+  DatabaseUpgrade:
+    env_spec: default
+    unix: python -m src.mlflow.tracking.server.handler --activity db_upgrade
+
+  #
+  # Development Time Commands
+  #
+
+  bash:
+    env_spec: development
+    unix: bash
+
+  test:unit:
+    env_spec: development
+    unix: coverage run --append --rcfile=.coveragerc -m unittest discover test/unit
+
+  coverage:
+    env_spec: development
+    unix: |
+      coverage report
+      coverage html
+      coverage xml
+
+  test:integration:
+    env_spec: development
+    unix: python -m unittest discover test/integration
+
+  clean:
+    env_spec: development
+    unix: |
+      rm -rf .coverage htmlcov docs/build
+
+  lint:
+    env_spec: development
+    unix: |
+      pylint src
+      isort --check --diff .
+      black --line-length=120 --target-version=py310 --check --diff .
+
+  lint:fix:
+    env_spec: development
+    unix: |
+      isort .
+      black --line-length=120 --target-version=py310 .
+
+  build:docs:
+    env_spec: development
+    unix: |
+      sphinx-build -b html docs/source docs/build
+
+channels:
+    - default
+    - https://conda.anaconda.org/conda-forge/
+    - https://conda.anaconda.org/joshburt/
+
+platforms:
+  - linux-64
+  - osx-64
+  - osx-arm64
+  - win-64
+
+env_specs:
+  default:
+    description: Runtime Environment
+    packages:
+      - python=3.10.8
+      - mlflow=2.0.1
+      - ipykernel
+      - anaconda.enterprise.server.contracts=0.8.1
+      - anaconda.enterprise.server.common.sdk=0.4.6
+
+###### Backend SQL Drivers ######
+
+      # PostgreSQL | https://docs.sqlalchemy.org/en/20/core/engines.html#postgresql
+      - psycopg2=2.9.3
+      - pg8000=1.29.3
+      - asyncpg=0.27.0
+
+      # MySQL | https://docs.sqlalchemy.org/en/20/core/engines.html#mysql
+      - mysqlclient=2.0.3
+      - PyMySQL=1.0.2
+
+      # Oracle Drivers | https://docs.sqlalchemy.org/en/20/core/engines.html#oracle
+      - cx_oracle=8.3.0
+
+      # Microsoft SQL Server Drivers | https://docs.sqlalchemy.org/en/20/core/engines.html#microsoft-sql-server
+      - pyodbc=4.0.35
+      - pymssql=2.2.5
+
+  development:
+    description: Development Environment
+    packages:
+      - python=3.10.8
+      - mlflow=2.0.1
+      - ipykernel
+      - isort
+      - black
+      - black-jupyter
+      - pylint
+      - coverage
+      - pyyaml
+      - sphinx
+      - sphinx-rtd-theme
+      - myst-parser
+      - anaconda.enterprise.server.contracts=0.8.1
+      - anaconda.enterprise.server.common.sdk=0.4.6
+
+###### Backend SQL Drivers ######
+
+      # PostgreSQL | https://docs.sqlalchemy.org/en/20/core/engines.html#postgresql
+      - psycopg2=2.9.3
+      - pg8000=1.29.3
+      - asyncpg=0.27.0
+
+      # MySQL | https://docs.sqlalchemy.org/en/20/core/engines.html#mysql
+      - mysqlclient=2.0.3
+      - PyMySQL=1.0.2
+
+      # Oracle Drivers | https://docs.sqlalchemy.org/en/20/core/engines.html#oracle
+      - cx_oracle=8.3.0
+
+      # Microsoft SQL Server Drivers | https://docs.sqlalchemy.org/en/20/core/engines.html#microsoft-sql-server
+      - pyodbc=4.0.35
+      - pymssql=2.2.5

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MLFlow Tracking Server Overview &mdash; MLFlow Tracking Server For Anaconda Enterprise 0.6.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation Guide" href="installation_guide.html" />
+    <link rel="prev" title="High Level Concepts" href="high_level_concepts.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> MLFlow Tracking Server For Anaconda Enterprise
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="high_level_concepts.html">High Level Concepts</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MLFlow Tracking Server Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#tracking-server">Tracking Server</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#assumptions">Assumptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#metadata">Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#file-assets">File Assets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#backup-strategy">Backup Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#upgrades">Upgrades</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#disaster-recovery">Disaster Recovery</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#current-limitations">Current Limitations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation_guide.html">Installation Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MLFlow Tracking Server For Anaconda Enterprise</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">MLFlow Tracking Server Overview</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/server_overview.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="mlflow-tracking-server-overview">
+<h1>MLFlow Tracking Server Overview<a class="headerlink" href="#mlflow-tracking-server-overview" title="Permalink to this heading"></a></h1>
+<p>The recommended way to deploy an MLFlow Tracking Server directly within an AE5 instance is with proxied artifact mode.</p>
+<ul class="simple">
+<li><p>In practice this simplifies, unifies, and limits access to (metadata and models) allowing the tracking server to act as the source of truth for experimentation tracking and model storage.</p></li>
+<li><p>The alternatives require clients to have read/write access to the backend artifact storage system.  Not putting an API in front of this can lead to catastrophic data loss (e.g. user error, etc.) and is not recommended.  The tracking server supports “file system only access“ deployments and many other configurations to accommodate edge cases.</p></li>
+</ul>
+<section id="tracking-server">
+<h2>Tracking Server<a class="headerlink" href="#tracking-server" title="Permalink to this heading"></a></h2>
+<section id="assumptions">
+<h3>Assumptions<a class="headerlink" href="#assumptions" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Operate in proxied artifact mode.  See <a class="reference external" href="https://www.mlflow.org/docs/2.0.1/tracking.html#scenario-5-mlflow-tracking-server-enabled-with-proxied-artifact-storage-access">MLflow Tracking — MLflow 2.0.1 documentation</a> for additional details.</p></li>
+<li><p>Run as a private deployment.</p></li>
+<li><p>Deployed with a static URL.</p></li>
+<li><p>Storage is on a persistence volume, or location such as in data.</p></li>
+<li><p>An external database is used for metadata persistence.</p></li>
+</ul>
+<img src="_static/MLFlow Tracking Server Deployment Diagram.png" alt="Tracking Server With Proxied Artifact Access">
+<p>The tracking server has two types of assets (metadata, and artifacts).</p>
+</section>
+<section id="metadata">
+<h3>Metadata<a class="headerlink" href="#metadata" title="Permalink to this heading"></a></h3>
+<p>Metadata can be persisted to any backend supported by SQLAlchemy, and the server itself uses a SQLAlchemy compliant connection string for this configuration parameter.</p>
+<ul class="simple">
+<li><p>See <a class="reference external" href="https://www.mlflow.org/docs/2.0.1/tracking.html#where-runs-are-recorded">Where Runs Are Recorded</a>  for details on all supported configurations.</p></li>
+<li><p>For additional details on SQLAlchemy see: <a class="reference external" href="https://docs.sqlalchemy.org/en/20/core/engines.html#database-urls">Database URLs</a>.</p></li>
+</ul>
+</section>
+<section id="file-assets">
+<h3>File Assets<a class="headerlink" href="#file-assets" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>File assets are stored on a file system accessible to the server at runtime.  See <a class="reference external" href="https://www.mlflow.org/docs/2.0.1/tracking.html#artifact-stores">Artifact Stores</a>  for details on all supported configurations.</p></li>
+</ul>
+</section>
+<section id="backup-strategy">
+<h3>Backup Strategy<a class="headerlink" href="#backup-strategy" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Standard backup and verification practices <strong>SHOULD</strong> be followed that meet the business continuity requirements of the organization.</p></li>
+<li><p>Since the MLFlow Tracking Server uses two different storage systems, backups <strong>MUST</strong> be synchronized between the two systems to ensure recoverability.</p></li>
+</ul>
+</section>
+<section id="upgrades">
+<h3>Upgrades<a class="headerlink" href="#upgrades" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>MLFlow has a schema upgrade mechanism for its database. See <a class="reference external" href="https://mlflow.org/docs/2.0.1/cli.html?highlight=schema#mlflow-db">DB Upgrade</a> for the documented process and its caveats.  Specifically ensure that backups of the data tier exist and are usable as the process can be destructive and is not reversible.</p></li>
+</ul>
+</section>
+<section id="disaster-recovery">
+<h3>Disaster Recovery<a class="headerlink" href="#disaster-recovery" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Details on when to restore data during disaster recovery are included within the <a class="reference internal" href="installation_guide.html"><span class="doc std std-doc">Installation Guide</span></a>.</p></li>
+</ul>
+</section>
+<section id="current-limitations">
+<h3>Current Limitations<a class="headerlink" href="#current-limitations" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>UI must be <code class="docutils literal notranslate"><span class="pre">popped</span> <span class="pre">out</span></code> of iframe. (Lack of CORS permissions involving iframing the UI causes the UI to be unusable)</p>
+<ul>
+<li><p><a class="reference external" href="https://github.com/mlflow/mlflow/issues/3583">mlflow UI not working in iframe[BUG]–cross origin issue · Issue #3583 · mlflow/mlflow</a></p></li>
+</ul>
+</li>
+<li><p>MLFlow does NOT have any authentication/authorization mechanism.  We leverage AE5’s authorization mechanism to secure it. (e.g. private deployment, with token access for API consumption)</p></li>
+<li><p>Possible performance issues with large numbers of experiments (<a class="reference external" href="https://github.com/mlflow/mlflow/issues/925">MLflow worker timeout when opening UI · Issue #925 · mlflow/mlflow</a>)</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="high_level_concepts.html" class="btn btn-neutral float-left" title="High Level Concepts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="installation_guide.html" class="btn btn-neutral float-right" title="Installation Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Anaconda, Inc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

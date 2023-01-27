@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation Guide &mdash; MLFlow Tracking Server For Anaconda Enterprise 0.6.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="MLFlow Tracking Server Overview" href="server_overview.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> MLFlow Tracking Server For Anaconda Enterprise
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="high_level_concepts.html">High Level Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="server_overview.html">MLFlow Tracking Server Overview</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#variables">Variables</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#deployment">Deployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#automated-deployments">Automated Deployments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#anaconda-project-runtime-commands">Anaconda Project Runtime Commands</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MLFlow Tracking Server For Anaconda Enterprise</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Installation Guide</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/installation_guide.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installation-guide">
+<h1>Installation Guide<a class="headerlink" href="#installation-guide" title="Permalink to this heading"></a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
+<p>Provides a hosted MLFlow Tracking Server meant for deployment into an Anaconda Enterprise environment.</p>
+</section>
+<section id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this heading"></a></h2>
+<p>The below variables control the configuration of the tracking server and related components.  See (Deployment) for information on when each is needed and created.</p>
+<p>These should be defined as AE5 secrets within the service account running the tracking server.  Alternatively they can also be set within the <code class="docutils literal notranslate"><span class="pre">anaconda-project.yml</span></code> project files.</p>
+<section id="variables">
+<h3>Variables<a class="headerlink" href="#variables" title="Permalink to this heading"></a></h3>
+<ol class="arabic">
+<li><p><code class="docutils literal notranslate"><span class="pre">MLFLOW_BACKEND_STORE_URI</span></code></p>
+<p><strong>Description</strong></p>
+<ul class="simple">
+<li><p>SQLAlchemy compliant connection string</p></li>
+</ul>
+<p><strong>Details</strong></p>
+<ul class="simple">
+<li><p>The backend store URI will most likely contain credentials for the connection and should not be exposed within anaconda-project.yml as plain text.</p></li>
+<li><p>For additional details see: <a class="reference external" href="https://docs.sqlalchemy.org/en/20/core/engines.html#database-urls">SQLAlchemy - Engine Configuration</a> and <a class="reference external" href="https://mlflow.org/docs/2.0.1/tracking.html#backend-stores">MLFlow - Backend Stores</a>.</p></li>
+</ul>
+<p><strong>Default</strong></p>
+<ul class="simple">
+<li><p>sqlite:///data/mlflow/standalone/store/mydb.sqlite</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MLFLOW_ARTIFACTS_DESTINATION</span></code></p>
+<p><strong>Description</strong></p>
+<ul class="simple">
+<li><p>Artifact location storage URI</p></li>
+</ul>
+<p><strong>Details</strong></p>
+<ul class="simple">
+<li><p>The artifact destination may not be sensitive and can be set as an ae5 secret for ease of configuration, or directly within the anaconda-project.yml for the tracking server project.</p></li>
+<li><p>See <a class="reference external" href="https://mlflow.org/docs/2.0.1/tracking.html#artifact-stores">MLFlow Artifact Stores</a> for supported stores (this can be as simple as a locally mounted volume).</p></li>
+</ul>
+<p><strong>Default</strong></p>
+<ul class="simple">
+<li><p>data/mlflow/standalone/artifacts</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MLFLOW_TRACKING_URI</span></code></p>
+<p><strong>Description</strong></p>
+<p>Remote Tracking Server URI</p>
+<p><strong>Details</strong></p>
+<ul class="simple">
+<li><p>This should be the static endpoint assigned to the private project deployment.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MLFLOW_REGISTRY_URI</span></code></p>
+<p><strong>Description</strong></p>
+<p>Model Registry URI</p>
+<p><strong>Details</strong></p>
+<ul class="simple">
+<li><p>This should be the static endpoint assigned to the private project deployment.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MLFLOW_TRACKING_TOKEN</span></code></p>
+<p><strong>Description</strong></p>
+<p>AE5 Private Endpoint Access Token</p>
+<p><strong>Details</strong></p>
+<ul class="simple">
+<li><p>This is used for authorization to the MLFLow services.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MLFLOW_TRACKING_GC_TTL</span></code></p>
+<p><strong>Description</strong></p>
+<p>MLFLow compliant string for the time limit</p>
+<p><strong>Details</strong></p>
+<ul class="simple">
+<li><p>See <a class="reference external" href="https://mlflow.org/docs/2.0.1/cli.html?highlight=gc#mlflow-gc">MLFlow Tracking Server Garbage Collection</a> and  <a class="reference external" href="https://mlflow.org/docs/2.0.1/cli.html?highlight=gc#cmdoption-mlflow-gc-older-than">GC Older Than</a> for additional details.</p></li>
+</ul>
+<p><strong>Default</strong></p>
+<p>30d0h0m0s</p>
+</li>
+</ol>
+</section>
+</section>
+<section id="deployment">
+<h2>Deployment<a class="headerlink" href="#deployment" title="Permalink to this heading"></a></h2>
+<ol class="arabic">
+<li><p><strong>Create Dedicated Service Account</strong></p>
+<ul class="simple">
+<li><p>The server <strong>SHOULD</strong> be uploaded and deployed using a dedicated service (ae5 user) account.</p></li>
+</ul>
+<p>This allows for centralized configuration and management of the different components and isolation from other users.  Many of the configuration parameters can be set as ae5 secrets, and it is recommended to do so for most if not all of them in the following steps.</p>
+</li>
+<li><p><strong>Configure Python Environment</strong></p>
+<p>The deployment environment <strong>MUST</strong> occur within a conda environment with (at least):</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span> channels:
+   - defaults
+   - ae5-admin
+ dependencies:
+   - python=3
+   - ae5-tools
+</pre></div>
+</div>
+</li>
+<li><p><strong>Configure AE5 Tools</strong></p>
+<p>Since the project needs to run under the user account created earlier we need to ensure we deploy to this user account.  This can be accomplished by either authenticating as the service account itself, or by an AE5 administrator who impersonates the service account at deployment time.  See <a class="reference external" href="https://github.com/Anaconda-Platform/ae5-tools">ae5-tools</a> for additional details.</p>
+</li>
+<li><p><strong>Download The Latest Release</strong></p>
+<p>The latest releases can be found <a class="reference external" href="https://github.com/Anaconda-Platform/mlflow-tracking-server/releases/latest">here</a>.</p>
+</li>
+<li><p><strong>[Optional] Slip Stream Customizations</strong></p>
+<p>The default works for most scenarios.  However, the archive can be updated and repackaged for specific deployments if needed. This could be useful in scenarios where changes to dependency versions, client specific commands, or default variables must occur prior to deployment.</p>
+</li>
+<li><p><strong>Upload Project</strong></p>
+<p>This can be accomplished using ae5 tools.</p>
+<p><strong>Example</strong></p>
+<blockquote>
+<div><p>ae5 project upload –name “mlflow.tracking.server” mlflow.tracking.server.x.y.z.tar.gz</p>
+</div></blockquote>
+</li>
+<li><p><strong>[Optional] Disaster Recovery</strong></p>
+<p>If performing a disaster recover then at this point the data <strong>MUST</strong> be restored to the database and filesystem before moving to step 8.</p>
+</li>
+<li><p><strong>Deploy MLFlow Tracking Server</strong></p>
+<ol class="arabic simple">
+<li><p>The below variables <strong>MUST</strong> be defined before deploying the server.</p></li>
+</ol>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>MLFLOW_BACKEND_STORE_URI</p></td>
+</tr>
+<tr class="row-odd"><td><p>MLFLOW_ARTIFACTS_DESTINATION</p></td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="2">
+<li><p>To deploy an instance of the tracking server we deploy the project with the below options:</p></li>
+</ol>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">TrackingServer</span></code> command <strong>MUST</strong> be invoked.</p></li>
+<li><p>The endpoint <strong>SHOULD</strong> be private.</p></li>
+<li><p>A static name for the endpoint <strong>SHOULD</strong> be specified.</p></li>
+</ul>
+<p>This can be accomplished using ae5 tools.</p>
+<p><strong>Example</strong></p>
+<blockquote>
+<div><p>ae5 project deploy –name “dev.mlflow.tracking.server” –endpoint “dev-mlflow-tracking-server” –command “TrackingServer” –private “dev.mlflow.tracking.server”</p>
+</div></blockquote>
+</li>
+<li><p><strong>Get Static URL For Endpoint</strong></p>
+<p>The static endpoint of the deployment is available from the deployment output.  It can also be found afterwards from the UI or by using the ae5 tools.</p>
+<p><strong>Example</strong></p>
+<blockquote>
+<div><p>ae5 deployment info “mlflow-tracking-server”</p>
+</div></blockquote>
+</li>
+<li><p><strong>Store Static URL</strong></p>
+<p>The endpoint URLs will be needed within this service (ae5 user) account by the garbage collection process (and/or other consumers) and <strong>SHOULD</strong> be set as an ae5 secret.</p>
+<ul class="simple">
+<li><p>If it is not set as an ae5 secret then it must be set within the <code class="docutils literal notranslate"><span class="pre">anaconda-project.yml</span></code> file when slip streaming (See Step 5) or by the consumer manually.</p></li>
+</ul>
+<p><strong>Both the tracking server and model registry should be set to the same endpoint:</strong></p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>MLFLOW_TRACKING_URI</p></td>
+</tr>
+<tr class="row-odd"><td><p>MLFLOW_REGISTRY_URI</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p><strong>Create Private Deployment Token</strong></p>
+<p>If deployed using the recommended configuration, then the token will be <strong>REQUIRED</strong> to access the server API.  It can be found from the UI or by using the ae5 tools.</p>
+<p><strong>Example</strong></p>
+<blockquote>
+<div><p>ae5 deployment token “mlflow.tracking.server”</p>
+</div></blockquote>
+</li>
+<li><p><strong>Store Private Deployment Token</strong></p>
+<ul class="simple">
+<li><p>If using the stale artifact clean up process then this <strong>MUST</strong> be stored within an ae5 secret.</p></li>
+<li><p>The token will be <strong>REQUIRED</strong> by all clients and users which need to access the MLFlow Tracking Service API.</p></li>
+<li><p>The administrator of the MLFlow Tracking Server <strong>MUST</strong> generate and provide the access token <strong>EVERY TIME</strong> the server is restart.</p></li>
+</ul>
+<p><strong>Store the value:</strong></p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>MLFLOW_TRACKING_TOKEN</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p><strong>Create Garbage Collection Schedule</strong></p>
+<p>What is garbage collection?</p>
+<p>The MLFlow Tracking Server does not automatically purge resources that a client deletes.  Instead, resources are set to the <code class="docutils literal notranslate"><span class="pre">deleted</span></code> lifecycle state and hidden from the UI and most API calls by default.  A deleted resource will block the creation of a new resource of the same name until the garbage collection process has purged it.  In order to purge deleted items a garbage collection process must be manually executed.</p>
+<ul class="simple">
+<li><p>The project comes with a command for invoking garbage collection.  A schedule for the process <strong>SHOULD</strong> be created so that this is occurring regularly.</p></li>
+<li><p>These environment variables <strong>MUST</strong> be defined as ae5 secrets, within the anaconda-project.yml, or passed to the ae5 job create command are variables (see below).</p></li>
+</ul>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>MLFLOW_BACKEND_STORE_URI</p></td>
+</tr>
+<tr class="row-odd"><td><p>MLFLOW_TRACKING_GC_TTL</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Examples</strong></p>
+<blockquote>
+<div><p>ae5 job create –command “GarbageCollection” –schedule “*/10 * * * *” –name “scheduled mlflow.tracking.server garbage collection” “mlflow.tracking.server”</p>
+</div></blockquote>
+<blockquote>
+<div><p>ae5 job create –command “GarbageCollection” –schedule “*/10 * * * *” –name “scheduled mlflow.tracking.server garbage collection” “mlflow.tracking.server” –variable MLFLOW_TRACKING_GC_TTL=”0d0h10m0s” –variable MLFLOW_BACKEND_STORE_URI=”sqlite:///data/mlflow/dev/store/mydb.sqlite”</p>
+</div></blockquote>
+</li>
+</ol>
+</section>
+<section id="automated-deployments">
+<h2>Automated Deployments<a class="headerlink" href="#automated-deployments" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>See <a class="reference external" href="https://github.com/Anaconda-Platform/anaconda-enterprise-mlops-orchestration/blob/main/notebooks/deployment/tracking_server.ipynb">automation notebook</a> for an example.</p></li>
+</ul>
+</section>
+<section id="anaconda-project-runtime-commands">
+<h2>Anaconda Project Runtime Commands<a class="headerlink" href="#anaconda-project-runtime-commands" title="Permalink to this heading"></a></h2>
+<p>These commands are used to start the server and perform the various administrative tasks.</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>Environment</p></th>
+<th class="text-left head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>TrackingServer</p></td>
+<td><p>Runtime</p></td>
+<td class="text-left"><p>Launches the MLFlow Tracking Server</p></td>
+</tr>
+<tr class="row-odd"><td><p>GarbageCollection</p></td>
+<td><p>Runtime</p></td>
+<td class="text-left"><p>Launches the MLFlow tracking server garbage collection process</p></td>
+</tr>
+<tr class="row-even"><td><p>DatabaseUpgrade</p></td>
+<td><p>Runtime</p></td>
+<td class="text-left"><p>Launches the MLFlow tracking server database upgrade process</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="server_overview.html" class="btn btn-neutral float-left" title="MLFlow Tracking Server Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Anaconda, Inc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
