@@ -106,8 +106,8 @@ env_specs:
       - python=3.10.8
       - mlflow=2.0.1
       - ipykernel
-      - anaconda.enterprise.server.contracts=0.8.2
-      - anaconda.enterprise.server.common.sdk=0.4.7
+      - anaconda.enterprise.server.contracts=0.8.3
+      - anaconda.enterprise.server.common.sdk=0.4.8
 
 ###### Backend SQL Drivers ######
 
@@ -142,8 +142,8 @@ env_specs:
       - sphinx
       - sphinx-rtd-theme
       - myst-parser
-      - anaconda.enterprise.server.contracts=0.8.2
-      - anaconda.enterprise.server.common.sdk=0.4.7
+      - anaconda.enterprise.server.contracts=0.8.3
+      - anaconda.enterprise.server.common.sdk=0.4.8
 
 ###### Backend SQL Drivers ######
 
