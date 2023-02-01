@@ -126,6 +126,10 @@ env_specs:
       - pyodbc=4.0.35
       - pymssql=2.2.5
 
+###### Backend File System Drivers ######
+      - azure-storage-blob=12.14.1
+      - google-cloud-storage=2.7.0
+
   development:
     description: Development Environment
     packages:
@@ -161,3 +165,7 @@ env_specs:
       # Microsoft SQL Server Drivers | https://docs.sqlalchemy.org/en/20/core/engines.html#microsoft-sql-server
       - pyodbc=4.0.35
       - pymssql=2.2.5
+
+###### Backend File System Drivers ######
+      - azure-storage-blob=12.14.1
+      - google-cloud-storage=2.7.0
