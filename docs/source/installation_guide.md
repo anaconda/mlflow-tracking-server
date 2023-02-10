@@ -186,7 +186,12 @@ Deployment
     |-----------------------|
     | MLFLOW_TRACKING_TOKEN |
 
-13. **Create Garbage Collection Schedule**
+13. **Grant Web Access to Authenticated Users**
+    
+    * Authenticated users must be granted access to the web front end.  To accomplish this the deployment must be shared with `everyone` or another approved group.
+    * The process of sharing deployments can be reviewed in [Sharing deployments](https://enterprise-docs.anaconda.com/en/latest/data-science-workflows/deployments/share.html).
+
+14. **Create Garbage Collection Schedule**
 
     What is garbage collection?
 
