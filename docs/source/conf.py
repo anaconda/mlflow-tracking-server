@@ -9,7 +9,7 @@
 project = "MLFlow Tracking Server For Anaconda Enterprise"
 copyright = "Anaconda, Inc"
 author = "Joshua C. Burt"
-release = "0.6.5"
+release = "0.6.6"
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
