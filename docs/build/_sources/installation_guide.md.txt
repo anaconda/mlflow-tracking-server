@@ -212,12 +212,6 @@ Deployment
 
     > ae5 job create --command "GarbageCollection" --schedule "*/10 * * * *" --name "scheduled mlflow.tracking.server garbage collection" "mlflow.tracking.server" --variable MLFLOW_TRACKING_GC_TTL="0d0h10m0s" --variable MLFLOW_BACKEND_STORE_URI="sqlite:///data/mlflow/dev/store/mydb.sqlite"
 
-Automated Deployments
---------
-
-* See [automation notebook](https://github.com/Anaconda-Platform/anaconda-enterprise-mlops-orchestration/blob/main/notebooks/deployment/tracking_server.ipynb) for an example.
-
-
 Anaconda Project Runtime Commands
 --------
 These commands are used to start the server and perform the various administrative tasks.
