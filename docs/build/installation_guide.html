@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Installation Guide &mdash; MLFlow Tracking Server For Anaconda Enterprise 0.6.7 documentation</title>
+  <title>Installation Guide &mdash; MLFlow Tracking Server For Anaconda Enterprise 0.6.8 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -284,10 +284,10 @@
 </li>
 <li><p><strong>Create Garbage Collection Schedule</strong></p>
 <p>What is garbage collection?</p>
-<p>The MLFlow Tracking Server does not automatically purge resources that a client deletes.  Instead, resources are set to the <code class="docutils literal notranslate"><span class="pre">deleted</span></code> lifecycle state and hidden from the UI and most API calls by default.  A deleted resource will block the creation of a new resource of the same name until the garbage collection process has purged it.  In order to purge deleted items a garbage collection process must be manually executed.</p>
+<p>The MLFlow Tracking Server does not automatically purge resources that a client deletes.  Instead, resources are set to the <code class="docutils literal notranslate"><span class="pre">deleted</span></code> lifecycle state and hidden from the UI and most API calls by default.  A deleted resource will block the creation of a new resource of the same name until the garbage collection process has purged it.  In order to purge deleted items a garbage collection process <strong>MUST</strong> be manually executed.</p>
 <ul class="simple">
 <li><p>The project comes with a command for invoking garbage collection.  A schedule for the process <strong>SHOULD</strong> be created so that this is occurring regularly.</p></li>
-<li><p>These environment variables <strong>MUST</strong> be defined as ae5 secrets, within the anaconda-project.yml, or passed to the ae5 job create command are variables (see below).</p></li>
+<li><p>These environment variables <strong>MUST</strong> be defined as ae5 secrets, within the anaconda-project.yml, or passed to the ae5 job create command as variables (see below).</p></li>
 </ul>
 <table class="colwidths-auto docutils align-default">
 <thead>
