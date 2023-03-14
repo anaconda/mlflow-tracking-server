@@ -195,11 +195,11 @@ Deployment
 
     What is garbage collection?
 
-    The MLFlow Tracking Server does not automatically purge resources that a client deletes.  Instead, resources are set to the `deleted` lifecycle state and hidden from the UI and most API calls by default.  A deleted resource will block the creation of a new resource of the same name until the garbage collection process has purged it.  In order to purge deleted items a garbage collection process must be manually executed.
+    The MLFlow Tracking Server does not automatically purge resources that a client deletes.  Instead, resources are set to the `deleted` lifecycle state and hidden from the UI and most API calls by default.  A deleted resource will block the creation of a new resource of the same name until the garbage collection process has purged it.  In order to purge deleted items a garbage collection process **MUST** be manually executed.
 
     * The project comes with a command for invoking garbage collection.  A schedule for the process **SHOULD** be created so that this is occurring regularly.
     
-    * These environment variables **MUST** be defined as ae5 secrets, within the anaconda-project.yml, or passed to the ae5 job create command are variables (see below).
+    * These environment variables **MUST** be defined as ae5 secrets, within the anaconda-project.yml, or passed to the ae5 job create command as variables (see below).
 
     | Variable                 |
     |--------------------------|
