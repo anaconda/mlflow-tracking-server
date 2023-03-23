@@ -3,7 +3,7 @@ import tempfile
 import unittest
 from unittest.mock import MagicMock, patch
 
-from anaconda.enterprise.server.common.sdk import demand_env_var
+from src.mlflow.tracking.server.common.config.environment import demand_env_var
 from src.mlflow.tracking.server.contracts.dto.launch_parameters import LaunchParameters
 from src.mlflow.tracking.server.contracts.types.activity import ActivityType
 from src.mlflow.tracking.server.controller import MLFlowTrackingServerController
@@ -109,9 +109,7 @@ class TestController(unittest.TestCase):
         ) as patched_launch:
             patched_launch.reset_mock()
             MLFlowTrackingServerController().execute(
-                params=LaunchParameters.parse_obj(
-                    {"sanity": True, "port": 0, "address": "localhost", "activity": "server"}
-                )
+                params=LaunchParameters(**{"sanity": True, "port": 0, "address": "localhost", "activity": "server"})
             )
 
             self.assertEqual(patched_launch.call_count, 1)

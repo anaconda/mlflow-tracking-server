@@ -2,8 +2,7 @@
 import sys
 from argparse import ArgumentParser, Namespace
 
-from anaconda.enterprise.server.common.sdk import load_ae5_user_secrets
-
+from .common.secrets import load_ae5_user_secrets
 from .contracts.dto.launch_parameters import LaunchParameters
 from .controller import MLFlowTrackingServerController
 

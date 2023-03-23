@@ -3,15 +3,13 @@ import shlex
 import subprocess
 from pathlib import Path
 
-from anaconda.enterprise.server.common.sdk import demand_env_var
-from anaconda.enterprise.server.contracts import BaseModel
-
+from .common.config.environment import demand_env_var
 from .contracts.dto.launch_parameters import LaunchParameters
 from .contracts.types.activity import ActivityType
 
 
 # pylint: disable=fixme,too-few-public-methods
-class MLFlowTrackingServerController(BaseModel):
+class MLFlowTrackingServerController:
     """
     Responsible for the invocation of the mlflow process.
     """
