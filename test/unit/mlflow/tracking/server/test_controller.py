@@ -109,9 +109,7 @@ class TestController(unittest.TestCase):
         ) as patched_launch:
             patched_launch.reset_mock()
             MLFlowTrackingServerController().execute(
-                params=LaunchParameters.parse_obj(
-                    {"sanity": True, "port": 0, "address": "localhost", "activity": "server"}
-                )
+                params=LaunchParameters(**{"sanity": True, "port": 0, "address": "localhost", "activity": "server"})
             )
 
             self.assertEqual(patched_launch.call_count, 1)

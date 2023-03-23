@@ -1,11 +1,10 @@
 """ MLFlow Tracking Server Supported Launch Parameters """
 
 from ..types.activity import ActivityType
-from .base_model import BaseModel
 
 
-# pylint: disable=too-few-public-methods
-class LaunchParameters(BaseModel):
+# pylint: disable=too-few-public-methods, too-many-arguments
+class LaunchParameters:
     """
     MLFlow Tracking Server Supported Launch Parameters (DTO)
     sanity: bool
@@ -22,9 +21,23 @@ class LaunchParameters(BaseModel):
         For a supporting command activity type, defines whether to commit changes or report only.
     """
 
-    sanity: bool = False
-    port: int = 8086
-    address: str = "0.0.0.0"
+    sanity: bool
+    port: int
+    address: str
 
     activity: ActivityType
-    dry_run: bool = False
+    dry_run: bool
+
+    def __init__(
+        self,
+        activity: ActivityType,
+        sanity: bool = False,
+        port: int = 8086,
+        address: str = "0.0.0.0",
+        dry_run: bool = False,
+    ):
+        self.sanity = sanity
+        self.port = port
+        self.address = address
+        self.activity = activity
+        self.dry_run = dry_run
