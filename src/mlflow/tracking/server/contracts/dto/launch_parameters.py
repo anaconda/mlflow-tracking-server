@@ -1,7 +1,7 @@
 """ MLFlow Tracking Server Supported Launch Parameters """
 
-from anaconda.enterprise.server.contracts import BaseModel
-from src.mlflow.tracking.server.contracts.types.activity import ActivityType
+from ..types.activity import ActivityType
+from .base_model import BaseModel
 
 
 # pylint: disable=too-few-public-methods

@@ -3,7 +3,7 @@ import tempfile
 import unittest
 from unittest.mock import MagicMock, patch
 
-from anaconda.enterprise.server.common.sdk import demand_env_var
+from src.mlflow.tracking.server.common.config.environment import demand_env_var
 from src.mlflow.tracking.server.contracts.dto.launch_parameters import LaunchParameters
 from src.mlflow.tracking.server.contracts.types.activity import ActivityType
 from src.mlflow.tracking.server.controller import MLFlowTrackingServerController

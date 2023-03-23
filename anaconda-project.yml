@@ -105,8 +105,7 @@ env_specs:
       - python=3.10.8
       - mlflow=2.0.1
       - ipykernel
-      - anaconda.enterprise.server.contracts=0.8.3
-      - anaconda.enterprise.server.common.sdk=0.4.8
+      - pydantic
 
 ###### Backend SQL Drivers ######
 
@@ -124,7 +123,6 @@ env_specs:
 
       # Microsoft SQL Server Drivers | https://docs.sqlalchemy.org/en/20/core/engines.html#microsoft-sql-server
       - pyodbc=4.0.35
-#      - pymssql=2.2.5
 
 ###### Backend File System Drivers ######
       - azure-storage-blob=12.14.1
@@ -135,6 +133,7 @@ env_specs:
     packages:
       - python=3.10.8
       - mlflow=2.0.1
+      - pydantic
       - ipykernel
       - isort
       - black
@@ -145,8 +144,6 @@ env_specs:
       - sphinx
       - sphinx-rtd-theme
       - myst-parser
-      - anaconda.enterprise.server.contracts=0.8.3
-      - anaconda.enterprise.server.common.sdk=0.4.8
 
 ###### Backend SQL Drivers ######
 
@@ -164,7 +161,6 @@ env_specs:
 
       # Microsoft SQL Server Drivers | https://docs.sqlalchemy.org/en/20/core/engines.html#microsoft-sql-server
       - pyodbc=4.0.35
-#      - pymssql=2.2.5
 
 ###### Backend File System Drivers ######
       - azure-storage-blob=12.14.1
