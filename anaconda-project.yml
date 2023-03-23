@@ -43,6 +43,30 @@ commands:
     unix: python -m src.mlflow.tracking.server.handler --activity db_upgrade
 
   #
+  # Minimum Run Time Commands
+  #
+  # A `minimum` environment has been defined which contains no external drivers.
+  # This can be used to run a stand-alone sqllite instance, or as a base for adding
+  # environment specific drivers.
+  #
+
+  # Command launches the MLFlow Tracking Server
+  MinimumTrackingServer:
+    env_spec: minimum
+    unix: python -m src.mlflow.tracking.server.handler --activity server
+    supports_http_options: true
+
+  # Command launches the MLFlow Garbage Collector
+  MinimumGarbageCollection:
+    env_spec: minimum
+    unix: python -m src.mlflow.tracking.server.handler --activity gc
+
+  # Command launches the database upgrade
+  MinimumDatabaseUpgrade:
+    env_spec: minimum
+    unix: python -m src.mlflow.tracking.server.handler --activity db_upgrade
+
+  #
   # Development Time Commands
   #
 
@@ -99,6 +123,17 @@ platforms:
   - win-64
 
 env_specs:
+  # The `minimum` environment contains no external drivers.
+  # This can be used to run a stand-alone sqllite instance, or as a base for adding
+  # environment specific drivers.
+  minimum:
+    description: Minimum Runtime Environment
+    packages:
+      - python=3.10.8
+      - mlflow=2.0.1
+      - ipykernel
+
+  # The `default` environment contains all external drivers.
   default:
     description: Runtime Environment
     packages:
@@ -127,6 +162,7 @@ env_specs:
       - azure-storage-blob=12.14.1
       - google-cloud-storage=2.7.0
 
+ # The `development` environment is used for development and maintenance of this solution.
   development:
     description: Development Environment
     packages:
