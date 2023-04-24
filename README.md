@@ -1,14 +1,5 @@
 #  MLFlow Tracking Server For Anaconda Enterprise
 
-[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=shapeandshare_mlflow.tracking.server&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=shapeandshare_mlflow.tracking.server)
-[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=shapeandshare_mlflow.tracking.server&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=shapeandshare_mlflow.tracking.server)
-[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=shapeandshare_mlflow.tracking.server&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=shapeandshare_mlflow.tracking.server)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=shapeandshare_mlflow.tracking.server&metric=coverage)](https://sonarcloud.io/summary/new_code?id=shapeandshare_mlflow.tracking.server)
-[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=shapeandshare_mlflow.tracking.server&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=shapeandshare_mlflow.tracking.server)
-[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=shapeandshare_mlflow.tracking.server&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=shapeandshare_mlflow.tracking.server)
-[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=shapeandshare_mlflow.tracking.server&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=shapeandshare_mlflow.tracking.server)
-[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=shapeandshare_mlflow.tracking.server&metric=bugs)](https://sonarcloud.io/summary/new_code?id=shapeandshare_mlflow.tracking.server)
-
 Overview
 --------
 Provides a hosted MLFlow Tracking Server meant for deployment into an Anaconda Enterprise environment.

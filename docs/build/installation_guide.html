@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Installation Guide &mdash; MLFlow Tracking Server For Anaconda Enterprise 0.6.10 documentation</title>
+  <title>Installation Guide &mdash; MLFlow Tracking Server For Anaconda Enterprise 0.7.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -100,7 +100,7 @@
 <p><strong>Details</strong></p>
 <ul class="simple">
 <li><p>The backend store URI will most likely contain credentials for the connection and should not be exposed within anaconda-project.yml as plain text.</p></li>
-<li><p>For additional details see: <a class="reference external" href="https://docs.sqlalchemy.org/en/20/core/engines.html#database-urls">SQLAlchemy - Engine Configuration</a> and <a class="reference external" href="https://mlflow.org/docs/2.0.1/tracking.html#backend-stores">MLFlow - Backend Stores</a>.</p></li>
+<li><p>For additional details see: <a class="reference external" href="https://docs.sqlalchemy.org/en/20/core/engines.html#database-urls">SQLAlchemy - Engine Configuration</a> and <a class="reference external" href="https://mlflow.org/docs/2.3.0/tracking.html#backend-stores">MLFlow - Backend Stores</a>.</p></li>
 </ul>
 <p><strong>Default</strong></p>
 <ul class="simple">
@@ -115,7 +115,7 @@
 <p><strong>Details</strong></p>
 <ul class="simple">
 <li><p>The artifact destination may not be sensitive and can be set as an ae5 secret for ease of configuration, or directly within the anaconda-project.yml for the tracking server project.</p></li>
-<li><p>See <a class="reference external" href="https://mlflow.org/docs/2.0.1/tracking.html#artifact-stores">MLFlow Artifact Stores</a> for supported stores (this can be as simple as a locally mounted volume).</p></li>
+<li><p>See <a class="reference external" href="https://mlflow.org/docs/2.3.0/tracking.html#artifact-stores">MLFlow Artifact Stores</a> for supported stores (this can be as simple as a locally mounted volume).</p></li>
 </ul>
 <p><strong>Default</strong></p>
 <ul class="simple">
@@ -151,7 +151,7 @@
 <p>MLFLow compliant string for the time limit</p>
 <p><strong>Details</strong></p>
 <ul class="simple">
-<li><p>See <a class="reference external" href="https://mlflow.org/docs/2.0.1/cli.html?highlight=gc#mlflow-gc">MLFlow Tracking Server Garbage Collection</a> and  <a class="reference external" href="https://mlflow.org/docs/2.0.1/cli.html?highlight=gc#cmdoption-mlflow-gc-older-than">GC Older Than</a> for additional details.</p></li>
+<li><p>See <a class="reference external" href="https://mlflow.org/docs/2.3.0/cli.html?highlight=gc#mlflow-gc">MLFlow Tracking Server Garbage Collection</a> and  <a class="reference external" href="https://mlflow.org/docs/2.3.0/cli.html?highlight=gc#cmdoption-mlflow-gc-older-than">GC Older Than</a> for additional details.</p></li>
 </ul>
 <p><strong>Default</strong></p>
 <p>30d0h0m0s</p>

@@ -130,7 +130,7 @@ env_specs:
     description: Minimum Runtime Environment
     packages:
       - python=3.10.8
-      - mlflow=2.0.1
+      - mlflow=2.3.0
       - ipykernel
 
   # The `default` environment contains all external drivers.
@@ -138,7 +138,7 @@ env_specs:
     description: Runtime Environment
     packages:
       - python=3.10.8
-      - mlflow=2.0.1
+      - mlflow=2.3.0
       - ipykernel
 
 ###### Backend SQL Drivers ######
@@ -167,7 +167,7 @@ env_specs:
     description: Development Environment
     packages:
       - python=3.10.8
-      - mlflow=2.0.1
+      - mlflow=2.3.0
       - ipykernel
       - isort
       - black
