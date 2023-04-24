@@ -10,7 +10,7 @@ The recommended way to deploy an MLFlow Tracking Server directly within an AE5 i
 
 ### Assumptions
 
-* Operate in proxied artifact mode.  See [MLflow Tracking — MLflow 2.0.1 documentation](https://www.mlflow.org/docs/2.0.1/tracking.html#scenario-5-mlflow-tracking-server-enabled-with-proxied-artifact-storage-access) for additional details.
+* Operate in proxied artifact mode.  See [MLflow Tracking — MLflow 2.3.0 documentation](https://www.mlflow.org/docs/2.3.0/tracking.html#scenario-5-mlflow-tracking-server-enabled-with-proxied-artifact-storage-access) for additional details.
 * Run as a private deployment.
 * Deployed with a static URL.
 * Storage is on a persistence volume, or location such as in data.
@@ -23,12 +23,12 @@ The tracking server has two types of assets (metadata, and artifacts).
 ### Metadata
 
 Metadata can be persisted to any backend supported by SQLAlchemy, and the server itself uses a SQLAlchemy compliant connection string for this configuration parameter. 
-* See [Where Runs Are Recorded](https://www.mlflow.org/docs/2.0.1/tracking.html#where-runs-are-recorded)  for details on all supported configurations.  
+* See [Where Runs Are Recorded](https://www.mlflow.org/docs/2.3.0/tracking.html#where-runs-are-recorded)  for details on all supported configurations.  
 * For additional details on SQLAlchemy see: [Database URLs](https://docs.sqlalchemy.org/en/20/core/engines.html#database-urls).
 
 ### File Assets
 
-* File assets are stored on a file system accessible to the server at runtime.  See [Artifact Stores](https://www.mlflow.org/docs/2.0.1/tracking.html#artifact-stores)  for details on all supported configurations.
+* File assets are stored on a file system accessible to the server at runtime.  See [Artifact Stores](https://www.mlflow.org/docs/2.3.0/tracking.html#artifact-stores)  for details on all supported configurations.
 
 ### Backup Strategy
 
@@ -37,7 +37,7 @@ Metadata can be persisted to any backend supported by SQLAlchemy, and the server
 
 ### Upgrades
 
-* MLFlow has a schema upgrade mechanism for its database. See [DB Upgrade](https://mlflow.org/docs/2.0.1/cli.html?highlight=schema#mlflow-db) for the documented process and its caveats.  Specifically ensure that backups of the data tier exist and are usable as the process can be destructive and is not reversible.
+* MLFlow has a schema upgrade mechanism for its database. See [DB Upgrade](https://mlflow.org/docs/2.3.0/cli.html?highlight=schema#mlflow-db) for the documented process and its caveats.  Specifically ensure that backups of the data tier exist and are usable as the process can be destructive and is not reversible.
 
 ### Disaster Recovery
 
