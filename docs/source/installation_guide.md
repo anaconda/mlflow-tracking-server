@@ -2,7 +2,7 @@
 
 Overview
 --------
-Provides a hosted MLFlow Tracking Server meant for deployment into an Anaconda Enterprise environment.
+Provides a hosted MLflow Tracking Server meant for deployment into an Anaconda Enterprise environment.
 
 Configuration
 --------
@@ -20,7 +20,7 @@ These should be defined as AE5 secrets within the service account running the tr
    
     **Details**
       * The backend store URI will most likely contain credentials for the connection and should not be exposed within anaconda-project.yml as plain text.
-      * For additional details see: [SQLAlchemy - Engine Configuration](https://docs.sqlalchemy.org/en/20/core/engines.html#database-urls) and [MLFlow - Backend Stores](https://mlflow.org/docs/2.3.0/tracking.html#backend-stores).
+      * For additional details see: [SQLAlchemy - Engine Configuration](https://docs.sqlalchemy.org/en/20/core/engines.html#database-urls) and [MLflow - Backend Stores](https://mlflow.org/docs/2.6.0/tracking.html#backend-stores).
    
     **Default**
 
@@ -35,7 +35,7 @@ These should be defined as AE5 secrets within the service account running the tr
    
     **Details**
       * The artifact destination may not be sensitive and can be set as an ae5 secret for ease of configuration, or directly within the anaconda-project.yml for the tracking server project.
-      * See [MLFlow Artifact Stores](https://mlflow.org/docs/2.3.0/tracking.html#artifact-stores) for supported stores (this can be as simple as a locally mounted volume).
+      * See [MLflow Artifact Stores](https://mlflow.org/docs/2.6.0/tracking.html#artifact-stores) for supported stores (this can be as simple as a locally mounted volume).
    
     **Default**
 
@@ -69,17 +69,17 @@ These should be defined as AE5 secrets within the service account running the tr
     AE5 Private Endpoint Access Token
    
     **Details**
-      * This is used for authorization to the MLFLow services.
+      * This is used for authorization to the MLfLow services.
 
 
 6. `MLFLOW_TRACKING_GC_TTL`
 
     **Description**
     
-    MLFLow compliant string for the time limit
+    MLfLow compliant string for the time limit
    
     **Details**
-      * See [MLFlow Tracking Server Garbage Collection](https://mlflow.org/docs/2.3.0/cli.html?highlight=gc#mlflow-gc) and  [GC Older Than](https://mlflow.org/docs/2.3.0/cli.html?highlight=gc#cmdoption-mlflow-gc-older-than) for additional details.
+      * See [MLflow Tracking Server Garbage Collection](https://mlflow.org/docs/2.6.0/cli.html?highlight=gc#mlflow-gc) and  [GC Older Than](https://mlflow.org/docs/2.6.0/cli.html?highlight=gc#cmdoption-mlflow-gc-older-than) for additional details.
    
     **Default**
 
@@ -177,8 +177,8 @@ Deployment
 12. **Store Private Deployment Token**
 
     * If using the stale artifact clean up process then this **MUST** be stored within an ae5 secret.
-    * The token will be **REQUIRED** by all clients and users which need to access the MLFlow Tracking Service API.
-    * The administrator of the MLFlow Tracking Server **MUST** generate and provide the access token **EVERY TIME** the server is restart.
+    * The token will be **REQUIRED** by all clients and users which need to access the MLflow Tracking Service API.
+    * The administrator of the MLflow Tracking Server **MUST** generate and provide the access token **EVERY TIME** the server is restart.
 
     **Store the value:**
 
@@ -195,7 +195,7 @@ Deployment
 
     What is garbage collection?
 
-    The MLFlow Tracking Server does not automatically purge resources that a client deletes.  Instead, resources are set to the `deleted` lifecycle state and hidden from the UI and most API calls by default.  A deleted resource will block the creation of a new resource of the same name until the garbage collection process has purged it.  In order to purge deleted items a garbage collection process **MUST** be manually executed.
+    The MLflow Tracking Server does not automatically purge resources that a client deletes.  Instead, resources are set to the `deleted` lifecycle state and hidden from the UI and most API calls by default.  A deleted resource will block the creation of a new resource of the same name until the garbage collection process has purged it.  In order to purge deleted items a garbage collection process **MUST** be manually executed.
 
     * The project comes with a command for invoking garbage collection.  A schedule for the process **SHOULD** be created so that this is occurring regularly.
     
@@ -218,6 +218,6 @@ These commands are used to start the server and perform the various administrati
 
 | Command           | Environment | Description                                                    |
 |-------------------|-------------|:---------------------------------------------------------------|
-| TrackingServer    | Runtime     | Launches the MLFlow Tracking Server                            |
-| GarbageCollection | Runtime     | Launches the MLFlow tracking server garbage collection process |
-| DatabaseUpgrade   | Runtime     | Launches the MLFlow tracking server database upgrade process   |
+| TrackingServer    | Runtime     | Launches the MLflow Tracking Server                            |
+| GarbageCollection | Runtime     | Launches the MLflow tracking server garbage collection process |
+| DatabaseUpgrade   | Runtime     | Launches the MLflow tracking server database upgrade process   |

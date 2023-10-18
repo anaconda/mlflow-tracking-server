@@ -1,4 +1,4 @@
-MLFlow Tracking Server For Anaconda Enterprise
+MLflow Tracking Server For Anaconda Enterprise
 ===========================================================
 
 .. toctree::
