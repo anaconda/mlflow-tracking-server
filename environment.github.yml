@@ -2,4 +2,5 @@ name: github.action
 channels:
   - default
 dependencies:
+  - python=3.11
   - anaconda-project
