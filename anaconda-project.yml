@@ -113,8 +113,8 @@ commands:
       sphinx-build -b html docs/source docs/build
 
 channels:
+    - defaults
     - https://conda.anaconda.org/conda-forge/
-    - https://conda.anaconda.org/joshburt/
 
 platforms:
   - linux-64
@@ -129,73 +129,74 @@ env_specs:
   minimum:
     description: Minimum Runtime Environment
     packages:
-      - python=3.10.8
-      - mlflow=2.3.0
-      - ipykernel
+      - defaults:python=3.11
+      - defaults:mlflow=2.6.0
+      - defaults:ipykernel
 
   # The `default` environment contains all external drivers.
   default:
     description: Runtime Environment
     packages:
-      - python=3.10.8
-      - mlflow=2.3.0
-      - ipykernel
+      - defaults:python=3.11
+      - defaults:mlflow=2.6.0
+      - defaults:ipykernel
 
 ###### Backend SQL Drivers ######
 
       # PostgreSQL | https://docs.sqlalchemy.org/en/20/core/engines.html#postgresql
-      - psycopg2=2.9.3
-      - pg8000=1.29.3
-      - asyncpg=0.27.0
+      - defaults:psycopg2
+      - conda-forge:pg8000
+      - defaults::asyncpg
 
       # MySQL | https://docs.sqlalchemy.org/en/20/core/engines.html#mysql
-      - mysqlclient=2.0.3
-      - PyMySQL=1.0.2
+      - defaults::mysqlclient
+      - defaults::PyMySQL
 
       # Oracle Drivers | https://docs.sqlalchemy.org/en/20/core/engines.html#oracle
-      - cx_oracle=8.3.0
+      - defaults::cx_oracle
 
       # Microsoft SQL Server Drivers | https://docs.sqlalchemy.org/en/20/core/engines.html#microsoft-sql-server
-      - pyodbc=4.0.35
+      - conda-forge:pyodbc
 
 ###### Backend File System Drivers ######
-      - azure-storage-blob=12.14.1
-      - google-cloud-storage=2.7.0
+      - conda-forge:azure-storage-blob
+      - conda-forge:google-cloud-storage
 
  # The `development` environment is used for development and maintenance of this solution.
   development:
     description: Development Environment
     packages:
-      - python=3.10.8
-      - mlflow=2.3.0
-      - ipykernel
-      - isort
-      - black
-      - black-jupyter
-      - pylint
-      - coverage
-      - pyyaml
-      - sphinx
-      - sphinx-rtd-theme
-      - myst-parser
+      - defaults::python=3.11
+      - defaults::mlflow=2.6.0
+      - defaults::ipykernel
+      - defaults::isort
+      - defaults::black
+      - defaults::pylint
+      - defaults::coverage
+      - defaults::pyyaml
+
+      # Documentation
+      - defaults:sphinx
+      - defaults:sphinx-rtd-theme
+      - defaults:myst-parser
 
 ###### Backend SQL Drivers ######
 
       # PostgreSQL | https://docs.sqlalchemy.org/en/20/core/engines.html#postgresql
-      - psycopg2=2.9.3
-      - pg8000=1.29.3
-      - asyncpg=0.27.0
+      - defaults::psycopg2
+      - conda-forge:pg8000
+      - defaults:asyncpg
 
       # MySQL | https://docs.sqlalchemy.org/en/20/core/engines.html#mysql
-      - mysqlclient=2.0.3
-      - PyMySQL=1.0.2
+      - defaults:mysqlclient
+      - defaults:PyMySQL
 
       # Oracle Drivers | https://docs.sqlalchemy.org/en/20/core/engines.html#oracle
-      - cx_oracle=8.3.0
+      - defaults:cx_oracle
 
       # Microsoft SQL Server Drivers | https://docs.sqlalchemy.org/en/20/core/engines.html#microsoft-sql-server
-      - pyodbc=4.0.35
+      - conda-forge:pyodbc
 
-###### Backend File System Drivers ######
-      - azure-storage-blob=12.14.1
-      - google-cloud-storage=2.7.0
+####### Backend File System Drivers ######
+      - conda-forge:azure-storage-blob
+      - conda-forge:google-cloud-storage

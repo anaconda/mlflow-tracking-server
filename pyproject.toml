@@ -1,6 +1,6 @@
 [tool.black]
 line-length = 120
-target-version = ['py310']
+target-version = ['py311']
 extend-exclude = '^/envs'
 # A regex preceded with ^/ will apply only to files and directories
 

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Installation Guide &mdash; MLFlow Tracking Server For Anaconda Enterprise 0.7.0 documentation</title>
+  <title>Installation Guide &mdash; MLFlow Tracking Server For Anaconda Enterprise 0.7.2 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -12,12 +12,14 @@
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="MLFlow Tracking Server Overview" href="server_overview.html" /> 
+    <link rel="prev" title="MLflow Tracking Server Overview" href="server_overview.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -42,7 +44,7 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="high_level_concepts.html">High Level Concepts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="server_overview.html">MLFlow Tracking Server Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="server_overview.html">MLflow Tracking Server Overview</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation Guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a><ul>
@@ -83,7 +85,7 @@
 <h1>Installation Guide<a class="headerlink" href="#installation-guide" title="Permalink to this heading"></a></h1>
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
-<p>Provides a hosted MLFlow Tracking Server meant for deployment into an Anaconda Enterprise environment.</p>
+<p>Provides a hosted MLflow Tracking Server meant for deployment into an Anaconda Enterprise environment.</p>
 </section>
 <section id="configuration">
 <h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this heading"></a></h2>
@@ -100,7 +102,7 @@
 <p><strong>Details</strong></p>
 <ul class="simple">
 <li><p>The backend store URI will most likely contain credentials for the connection and should not be exposed within anaconda-project.yml as plain text.</p></li>
-<li><p>For additional details see: <a class="reference external" href="https://docs.sqlalchemy.org/en/20/core/engines.html#database-urls">SQLAlchemy - Engine Configuration</a> and <a class="reference external" href="https://mlflow.org/docs/2.3.0/tracking.html#backend-stores">MLFlow - Backend Stores</a>.</p></li>
+<li><p>For additional details see: <a class="reference external" href="https://docs.sqlalchemy.org/en/20/core/engines.html#database-urls">SQLAlchemy - Engine Configuration</a> and <a class="reference external" href="https://mlflow.org/docs/2.6.0/tracking.html#backend-stores">MLflow - Backend Stores</a>.</p></li>
 </ul>
 <p><strong>Default</strong></p>
 <ul class="simple">
@@ -115,7 +117,7 @@
 <p><strong>Details</strong></p>
 <ul class="simple">
 <li><p>The artifact destination may not be sensitive and can be set as an ae5 secret for ease of configuration, or directly within the anaconda-project.yml for the tracking server project.</p></li>
-<li><p>See <a class="reference external" href="https://mlflow.org/docs/2.3.0/tracking.html#artifact-stores">MLFlow Artifact Stores</a> for supported stores (this can be as simple as a locally mounted volume).</p></li>
+<li><p>See <a class="reference external" href="https://mlflow.org/docs/2.6.0/tracking.html#artifact-stores">MLflow Artifact Stores</a> for supported stores (this can be as simple as a locally mounted volume).</p></li>
 </ul>
 <p><strong>Default</strong></p>
 <ul class="simple">
@@ -143,15 +145,15 @@
 <p>AE5 Private Endpoint Access Token</p>
 <p><strong>Details</strong></p>
 <ul class="simple">
-<li><p>This is used for authorization to the MLFLow services.</p></li>
+<li><p>This is used for authorization to the MLfLow services.</p></li>
 </ul>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">MLFLOW_TRACKING_GC_TTL</span></code></p>
 <p><strong>Description</strong></p>
-<p>MLFLow compliant string for the time limit</p>
+<p>MLfLow compliant string for the time limit</p>
 <p><strong>Details</strong></p>
 <ul class="simple">
-<li><p>See <a class="reference external" href="https://mlflow.org/docs/2.3.0/cli.html?highlight=gc#mlflow-gc">MLFlow Tracking Server Garbage Collection</a> and  <a class="reference external" href="https://mlflow.org/docs/2.3.0/cli.html?highlight=gc#cmdoption-mlflow-gc-older-than">GC Older Than</a> for additional details.</p></li>
+<li><p>See <a class="reference external" href="https://mlflow.org/docs/2.6.0/cli.html?highlight=gc#mlflow-gc">MLflow Tracking Server Garbage Collection</a> and  <a class="reference external" href="https://mlflow.org/docs/2.6.0/cli.html?highlight=gc#cmdoption-mlflow-gc-older-than">GC Older Than</a> for additional details.</p></li>
 </ul>
 <p><strong>Default</strong></p>
 <p>30d0h0m0s</p>
@@ -264,8 +266,8 @@
 <li><p><strong>Store Private Deployment Token</strong></p>
 <ul class="simple">
 <li><p>If using the stale artifact clean up process then this <strong>MUST</strong> be stored within an ae5 secret.</p></li>
-<li><p>The token will be <strong>REQUIRED</strong> by all clients and users which need to access the MLFlow Tracking Service API.</p></li>
-<li><p>The administrator of the MLFlow Tracking Server <strong>MUST</strong> generate and provide the access token <strong>EVERY TIME</strong> the server is restart.</p></li>
+<li><p>The token will be <strong>REQUIRED</strong> by all clients and users which need to access the MLflow Tracking Service API.</p></li>
+<li><p>The administrator of the MLflow Tracking Server <strong>MUST</strong> generate and provide the access token <strong>EVERY TIME</strong> the server is restart.</p></li>
 </ul>
 <p><strong>Store the value:</strong></p>
 <table class="docutils align-default">
@@ -287,7 +289,7 @@
 </li>
 <li><p><strong>Create Garbage Collection Schedule</strong></p>
 <p>What is garbage collection?</p>
-<p>The MLFlow Tracking Server does not automatically purge resources that a client deletes.  Instead, resources are set to the <code class="docutils literal notranslate"><span class="pre">deleted</span></code> lifecycle state and hidden from the UI and most API calls by default.  A deleted resource will block the creation of a new resource of the same name until the garbage collection process has purged it.  In order to purge deleted items a garbage collection process <strong>MUST</strong> be manually executed.</p>
+<p>The MLflow Tracking Server does not automatically purge resources that a client deletes.  Instead, resources are set to the <code class="docutils literal notranslate"><span class="pre">deleted</span></code> lifecycle state and hidden from the UI and most API calls by default.  A deleted resource will block the creation of a new resource of the same name until the garbage collection process has purged it.  In order to purge deleted items a garbage collection process <strong>MUST</strong> be manually executed.</p>
 <ul class="simple">
 <li><p>The project comes with a command for invoking garbage collection.  A schedule for the process <strong>SHOULD</strong> be created so that this is occurring regularly.</p></li>
 <li><p>These environment variables <strong>MUST</strong> be defined as ae5 secrets, within the anaconda-project.yml, or passed to the ae5 job create command as variables (see below).</p></li>
@@ -327,15 +329,15 @@
 <tbody>
 <tr class="row-even"><td><p>TrackingServer</p></td>
 <td><p>Runtime</p></td>
-<td class="text-left"><p>Launches the MLFlow Tracking Server</p></td>
+<td class="text-left"><p>Launches the MLflow Tracking Server</p></td>
 </tr>
 <tr class="row-odd"><td><p>GarbageCollection</p></td>
 <td><p>Runtime</p></td>
-<td class="text-left"><p>Launches the MLFlow tracking server garbage collection process</p></td>
+<td class="text-left"><p>Launches the MLflow tracking server garbage collection process</p></td>
 </tr>
 <tr class="row-even"><td><p>DatabaseUpgrade</p></td>
 <td><p>Runtime</p></td>
-<td class="text-left"><p>Launches the MLFlow tracking server database upgrade process</p></td>
+<td class="text-left"><p>Launches the MLflow tracking server database upgrade process</p></td>
 </tr>
 </tbody>
 </table>
@@ -346,7 +348,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="server_overview.html" class="btn btn-neutral float-left" title="MLFlow Tracking Server Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="server_overview.html" class="btn btn-neutral float-left" title="MLflow Tracking Server Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

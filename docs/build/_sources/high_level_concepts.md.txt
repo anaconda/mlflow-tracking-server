@@ -2,8 +2,8 @@
 
 Tracking Server, Workflows, and Endpoints can all run as deployments natively within Anaconda Enterprise.
 
-Below we can see the deployment and access pattern for MLFlow Tracking Server within Anaconda Enterprise.
-<img src="_static/AE5 MLFlow High Level.png" alt="AE5 MLFlow High Level Diagram">
+Below we can see the deployment and access pattern for MLflow Tracking Server within Anaconda Enterprise.
+<img src="_static/AE5 MLFlow High Level.png" alt="AE5 MLflow High Level Diagram">
 In the following sections we will go into further detail on each tier within the diagram.
 
 ## Consumers
@@ -14,11 +14,11 @@ Consumers are internal or external to the platform.  Both types of consumers mus
 
 **External Consumer Examples**
 
-* Users directly accessing the MLFlow Tracking Server, triggering project runs, or accessing model endpoints.
+* Users directly accessing the MLflow Tracking Server, triggering project runs, or accessing model endpoints.
 
 **Internal Consumer Examples**
 
-* AE5 hosted notebook instances or workflows which interact with the MLFlow tracking server for tracking, or reporting.
+* AE5 hosted notebook instances or workflows which interact with the MLflow tracking server for tracking, or reporting.
 
 ## AE5 Platform
 
